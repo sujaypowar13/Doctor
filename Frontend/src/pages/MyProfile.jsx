@@ -59,7 +59,7 @@ const MyProfile = () => {
           {isEdit ? (
             <p>
               <input
-                className="bg-gray-50"
+                className="bg-gray-50 mb-1"
                 onChange={(e) =>
                   setUserData((prev) => ({
                     ...prev,
