@@ -127,50 +127,54 @@ const Appointment = () => {
           </div>
         </div>
         {/* Booking Slots */}
-        <div className="sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700">
-          <p>Booking slots</p>
-          <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
-            {docSlots.length &&
-              docSlots.map((item, index) => (
-                <div
-                  onClick={() => {
-                    setSlotIndex(index);
-                  }}
-                  className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
-                    slotIndex === index
-                      ? `bg-[#5f6FFF] text-white`
-                      : `border border-gray-200`
-                  }`}
-                  key={index}
-                >
-                  <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
-                  <p>{item[0] && item[0].datetime.getDate()}</p>
-                </div>
-              ))}
-          </div>
+        <div className="sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700 px-2 sm:px-0">
+          <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+            <p className="mb-2 text-base font-semibold">Booking slots</p>
+            <div className="flex gap-2 sm:gap-3 items-center w-full overflow-x-auto mt-2 pb-2">
+              {docSlots.length &&
+                docSlots.map((item, index) => (
+                  <div
+                    onClick={() => {
+                      setSlotIndex(index);
+                    }}
+                    className={`text-center py-3 px-2 min-w-16 rounded-full cursor-pointer text-xs sm:text-sm transition-all ${
+                      slotIndex === index
+                        ? `bg-[#5f6FFF] text-white`
+                        : `border border-gray-200 bg-gray-50`
+                    }`}
+                    key={index}
+                  >
+                    <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
+                    <p>{item[0] && item[0].datetime.getDate()}</p>
+                  </div>
+                ))}
+            </div>
 
-          <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
-            {docSlots.length &&
-              docSlots[slotIndex].map((item, index) => (
-                <p
-                  onClick={() => setSlotTime(item.time)}
-                  className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
-                    item.time === slotTime
-                      ? `bg-[#5f6FFF] text-white`
-                      : `border border-gray-300 text-gray-400`
-                  }`}
-                  key={index}
-                >
-                  {item.time.toLowerCase()}
-                </p>
-              ))}
+            <div className="flex gap-2 sm:gap-3 items-center w-full overflow-x-auto mt-4 pb-2">
+              {docSlots.length &&
+                docSlots[slotIndex].map((item, index) => (
+                  <p
+                    onClick={() => setSlotTime(item.time)}
+                    className={`text-xs sm:text-sm font-light flex-shrink-0 px-4 py-2 rounded-full cursor-pointer transition-all ${
+                      item.time === slotTime
+                        ? `bg-[#5f6FFF] text-white`
+                        : `border border-gray-300 text-gray-500 bg-gray-50`
+                    }`}
+                    key={index}
+                  >
+                    {item.time.toLowerCase()}
+                  </p>
+                ))}
+            </div>
+            <button className="w-full sm:w-auto bg-[#5f6FFF] text-white text-sm font-light px-8 py-3 rounded-full my-6 mt-5 transition-all">
+              Book an appointment
+            </button>
           </div>
-          <button className="bg-[#5f6FFF] text-white text-sm font-light px-14 py-3 rounded-full my-6">
-            Book an appointment
-          </button>
         </div>
         {/* Listing Related Doctors */}
-        <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
+        <div className="mt-8 px-2 sm:px-0">
+          <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
+        </div>
       </div>
     )
   );
