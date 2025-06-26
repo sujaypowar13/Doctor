@@ -11,9 +11,10 @@ import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import "./index.css";
 import Footer from "./components/Footer";
+
 const App = () => {
   return (
-    <div className="mx-4 sm:mx-[10%]">
+    <div className="mx-2 sm:mx-[10%]">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

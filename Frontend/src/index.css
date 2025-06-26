@@ -2,14 +2,20 @@
 @import "tailwindcss";
 
 * {
-  font-family: Outfit;
+  font-family: "Outfit", sans-serif;
 }
+
 .active hr {
   @apply block;
 }
 
+/* Hide scrollbar for all browsers */
 ::-webkit-scrollbar {
   @apply hidden;
+}
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @media (max-width: 740px) {

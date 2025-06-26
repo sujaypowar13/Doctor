@@ -19,16 +19,16 @@ const Header = () => {
         </div>
         <a
           href="#speciality"
-          className="flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-600 text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300 "
+          className="flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-600 text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300 cursor-pointer"
         >
           Book appointment{" "}
           <img className="w-3" src={assets.arrow_icon} alt="" />
         </a>
       </div>
       {/* right side */}
-      <div className="md:w-1/2 relative">
+      <div className="md:w-1/2 relative flex items-end justify-end mt-6 md:mt-0">
         <img
-          className="w-full md:absolute bottom-0 h-auto rounded-lg"
+          className="w-full md:w-auto md:absolute bottom-0 right-0 h-auto rounded-lg max-h-[340px] object-cover"
           src={assets.header_img}
           alt=""
         />
