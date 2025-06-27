@@ -23,10 +23,12 @@ const Footer = () => {
             onClick={() => handleNav("/")}
           />
           <p className="w-full md:w-2/3 text-gray-600 leading-6">
-            Mahendra Singh Dhoni, is an Indian professional cricketer who plays
-            as a right-handed batter and a wicket-keeper. Widely regarded as one
-            of the most prolific wicket-keeper batsmen and captains and one of
-            the greatest ODI batsmen.
+            <span className="text-gray-700 font-semibold">Aapla Doctor </span>
+             is your go-to platform for booking doctor appointments
+            online—quickly, safely, and hassle-free. <br /> Whether you need a
+            general physician, pediatrician, dentist, skin specialist, or any
+            other expert, <br />
+            We connect you with verified doctors in our city.
           </p>
         </div>
         {/* Center side */}
