@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const doctorSchema = new mongoose.Schema(
   {
     name: {
@@ -36,7 +37,7 @@ const doctorSchema = new mongoose.Schema(
     },
     available: {
       type: Boolean,
-      required: true,
+      default: true,
     },
     fees: {
       type: Number,
@@ -58,6 +59,6 @@ const doctorSchema = new mongoose.Schema(
   { minimize: false } // This option prevents mongoose from removing empty objects
 );
 
-const DoctorModel =
+const doctorModel =
   mongoose.models.doctor || mongoose.model("doctor", doctorSchema);
-export default DoctorModel;
+export default doctorModel;
