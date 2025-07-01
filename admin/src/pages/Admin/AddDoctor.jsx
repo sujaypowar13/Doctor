@@ -51,11 +51,23 @@ const AddDoctor = () => {
         { headers: { aToken } }
       );
       if (data.success) {
-        toast.success(data.message); // Show the actual message
+        toast.success(data.message); // Show success toast msg on UI
+        setDocImg(false);
+        setName("");
+        setPassword("");
+        setEmail("");
+        setAddress1("");
+        setAddress2("");
+        setDegree("");
+        setAbout("");
+        setFees("");
       } else {
         toast.error(data.message);
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    }
   };
 
   return (
