@@ -1,1 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
+
+* {
+  font-family: "Outfit", sans-serif;
+}
+
+.active hr {
+  @apply block;
+}
+
+/* Hide scrollbar for all browsers */
+::-webkit-scrollbar {
+  @apply hidden;
+}
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@media (max-width: 740px) {
+  .active p {
+    @apply text-white bg-[#5f6FFF];
+  }
+}
