@@ -11,10 +11,14 @@ import Appointment from "./pages/Appointment";
 import Navbar from "./components/Navbar";
 import "./index.css";
 import Footer from "./components/Footer";
+// eslint-disable-next-line no-unused-vars
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <div className="mx-2 sm:mx-[10%]">
+      <ToastContainer />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

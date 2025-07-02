@@ -1,14 +1,20 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "..//assets/assets";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { token, setToken } = useContext(AppContext);
+
   const [showMenu, setShowMenu] = useState(false);
-  const [token, setToken] = useState(true);
+  const logout = () => {
+    setToken(false);
+    localStorage.removeItem("token");
+  };
 
   // Helper to check if route is active
   const isActive = (path) => location.pathname === path;
@@ -91,7 +97,7 @@ const Navbar = () => {
                   My Appointments
                 </p>
                 <p
-                  onClick={() => setToken(false)}
+                  onClick={logout}
                   className="hover:text-black cursor-pointer"
                 >
                   Logout
