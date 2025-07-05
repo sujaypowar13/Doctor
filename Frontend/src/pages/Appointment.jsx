@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 import RelatedDoctors from "../components/RelatedDoctors";
+import { toast } from "react-toastify";
 
 const Appointment = () => {
   const { docId } = useParams();
-  const { doctors, currencySymbol } = useContext(AppContext);
+  const { doctors, currencySymbol, backendUrl, token, getDoctorsData } =
+    useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const navigate = useNavigate();
 
   const [docInfo, setDocInfo] = useState(null);
   const [docSlots, setDocSlots] = useState([]);
@@ -57,13 +60,34 @@ const Appointment = () => {
     }
   };
 
+  const bookAppointment = async () => {
+    if (!token) {
+      toast.warn("Login to book appointment");
+      return navigate("/login");
+    }
+
+    try {
+      const date = docSlots[slotIndex][0].datetime;
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+
+      const slotDate = day + "_" + month + "_" + year;
+      
+    } catch (error) {}
+  };
+
   useEffect(() => {
     fetchDocInfo();
   }, [doctors, docId]);
 
   useEffect(() => {
     getAvailableSlots();
-  }, [docId]);
+  }, [docInfo]);
+
+  useEffect(() => {
+    console.log(docSlots);
+  }, [docSlots]);
 
   // Removed console.log(docSlots) effect for cleaner code
 
@@ -149,7 +173,10 @@ const Appointment = () => {
                   </p>
                 ))}
             </div>
-            <button className="w-full sm:w-auto bg-[#5f6FFF] text-white text-sm font-light px-8 py-3 rounded-full my-6 mt-5 transition-all">
+            <button
+              onClick={bookAppointment}
+              className="w-full sm:w-auto bg-[#5f6FFF] text-white text-sm font-light px-8 py-3 rounded-full my-6 mt-5 transition-all"
+            >
               Book an appointment
             </button>
           </div>
