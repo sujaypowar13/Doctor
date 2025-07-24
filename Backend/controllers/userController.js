@@ -4,6 +4,7 @@ import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
 import doctorModel from "../models/DoctorModel.js";
+import appointmentModel from "../models/appointmentModel.js";
 
 //API to regiser user in app
 const registerUser = async (req, res) => {
@@ -115,7 +116,7 @@ const updateProfile = async (req, res) => {
 const bookAppointment = async (req, res) => {
   try {
     const { userId, docId, slotDate, slotTime } = req.body;
-    const docData = await doctorModel.findById(docId.select("-password"));
+    const docData = await doctorModel.findById(docId).select("-password");
 
     if (!docData.available) {
       return res.json({ success: false, message: "Doctor not available" });
@@ -162,4 +163,23 @@ const bookAppointment = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, getProfile, updateProfile, bookAppointment };
+// API to get all appointments for frontend my-appointment page
+const listAppointment = async (req, res) => {
+  try {
+    const {userId} = req.userId;
+    const appointments = await appointmentModel.find({ userId });
+    res.json({ success: true, appointments });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export {
+  registerUser,
+  loginUser,
+  getProfile,
+  updateProfile,
+  bookAppointment,
+  listAppointment,
+};
